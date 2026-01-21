@@ -259,34 +259,44 @@
       }
 
       function render() {
-        let total = 0,
-          sumTravel = 0;
+        let sumMain = 0;
+        let sumTravel = 0;
+        let sumExtra = 0;
+
         const tbody = document.getElementById("status");
         tbody.innerHTML = "";
 
         Object.keys(plan).forEach((m) => {
           const p = plan[m];
           const extra = extras[m] || 0;
+
+          sumMain += p.main;
+          sumTravel += p.travel;
+          sumExtra += extra;
+
           const monthTotal = p.main + p.travel + extra;
 
-          total += monthTotal;
-          sumTravel += p.travel;
-
           tbody.innerHTML += `
-            <tr>
-              <td class="left">${m}</td>
-              <td>${p.life.toLocaleString()}</td>
-              <td>${p.main.toLocaleString()}</td>
-              <td>${p.travel.toLocaleString()}</td>
-              <td>${extra.toLocaleString()}</td>
-              <td><strong>${monthTotal.toLocaleString()}</strong></td>
-            </tr>`;
+      <tr>
+        <td class="left">${m}</td>
+        <td>${p.life.toLocaleString()}</td>
+        <td>${p.main.toLocaleString()}</td>
+        <td>${p.travel.toLocaleString()}</td>
+        <td>${extra.toLocaleString()}</td>
+        <td><strong>${monthTotal.toLocaleString()}</strong></td>
+      </tr>`;
         });
 
+        // แสดงผลรวมออมเที่ยว
         document.getElementById("travelSave").textContent =
           sumTravel.toLocaleString();
+
+        // เงินเก็บสะสมที่ "ไม่ซ้ำ"
+        const totalSaving = sumMain + sumTravel + sumExtra;
+
         document.getElementById("total").textContent =
-          total.toLocaleString() + " บาท";
+          totalSaving.toLocaleString() + " บาท";
+
         updateMonthlySplit();
       }
 
