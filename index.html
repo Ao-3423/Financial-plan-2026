@@ -1,268 +1,315 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>แผนการเงิน 2026</title>
-<link rel="icon" href="imgs/2054.jpg" type="image/png" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>แผนการเงิน 2026</title>
+    <link rel="icon" href="imgs/2054.jpg" type="image/png" />
 
-<style>
-:root{
- --bg:#f2f2f7;
- --card:#fff;
- --text:#111;
- --muted:#666;
-}
+    <style>
+      :root {
+        --bg: #f2f2f7;
+        --card: #fff;
+        --text: #111;
+        --muted: #666;
+      }
 
-*{box-sizing:border-box}
+      * {
+        box-sizing: border-box;
+      }
 
-body{
- font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,sans-serif;
- background:var(--bg);
- margin:0;
- padding:14px;
- color:var(--text);
- display:flex;
- justify-content:center;
-}
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui,
+          sans-serif;
+        background: var(--bg);
+        margin: 0;
+        padding: 14px;
+        color: var(--text);
+        display: flex;
+        justify-content: center;
+      }
 
-.container{
- width:100%;
- max-width:820px;
-}
+      .container {
+        width: 100%;
+        max-width: 820px;
+      }
 
-h1{
- font-size:1.4rem;
- margin-bottom:12px;
-}
+      h1 {
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+      }
 
-.card{
- background:var(--card);
- border-radius:18px;
- padding:14px;
- margin-bottom:14px;
- box-shadow:0 6px 18px rgba(0,0,0,.06);
-}
+      .card {
+        background: var(--card);
+        border-radius: 18px;
+        padding: 14px;
+        margin-bottom: 14px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+      }
 
-.card h3{margin-top:0}
+      .card h3 {
+        margin-top: 0;
+      }
 
-.row{
- display:flex;
- justify-content:space-between;
- align-items:center;
- margin:6px 0;
- font-size:.9rem;
- gap:10px;
-}
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 6px 0;
+        font-size: 0.9rem;
+        gap: 10px;
+      }
 
-.label{color:var(--muted)}
+      .label {
+        color: var(--muted);
+      }
 
-select,input,button{
- width:100%;
- height:48px;
- padding:0 14px;
- border-radius:14px;
- border:1px solid #d1d5db;
- font-size:1rem;
- margin-bottom:6px;
-}
+      select,
+      input,
+      button {
+        width: 100%;
+        height: 48px;
+        padding: 0 14px;
+        border-radius: 14px;
+        border: 1px solid #d1d5db;
+        font-size: 1rem;
+        margin-bottom: 6px;
+      }
 
-button{
- background:#3c3d3e;
- color:#fff;
- border:none;
- font-weight:600;
- margin-top:8px;
-}
+      button {
+        background: #3c3d3e;
+        color: #fff;
+        border: none;
+        font-weight: 600;
+        margin-top: 8px;
+      }
 
-.table-wrap{
- overflow-x:auto;
- -webkit-overflow-scrolling:touch;
-}
+      .table-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
 
-table{
- width:100%;
- min-width:640px;
- border-collapse:collapse;
- font-size:.8rem;
-}
+      table {
+        width: 100%;
+        min-width: 700px;
+        border-collapse: collapse;
+        font-size: 0.8rem;
+      }
 
-th,td{
- padding:8px 6px;
- border-bottom:1px solid #eee;
- text-align:center;
- white-space:nowrap;
-}
+      th,
+      td {
+        padding: 8px 6px;
+        border-bottom: 1px solid #eee;
+        text-align: center;
+        white-space: nowrap;
+      }
 
-th{
- background:#f9fafb;
- font-weight:600;
-}
+      th {
+        background: #f9fafb;
+        font-weight: 600;
+      }
 
-.left{text-align:left}
+      .left {
+        text-align: left;
+      }
 
-th:first-child,
-td:first-child{
- position:sticky;
- left:0;
- background:#fff;
-}
+      th:first-child,
+      td:first-child {
+        position: sticky;
+        left: 0;
+        background: #fff;
+      }
 
-th:first-child{background:#f1f5f9}
+      th:first-child {
+        background: #f1f5f9;
+      }
 
-hr{
- border:none;
- border-top:1px solid #eee;
- margin:10px 0;
-}
+      hr {
+        border: none;
+        border-top: 1px solid #eee;
+        margin: 10px 0;
+      }
 
-/* ===== Responsive เพิ่ม ===== */
-@media (max-width:600px){
- h1{font-size:1.2rem}
- table{font-size:.75rem}
- .row{font-size:.85rem}
-}
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 1.2rem;
+        }
+        table {
+          font-size: 0.75rem;
+        }
+        .row {
+          font-size: 0.85rem;
+        }
+      }
+    </style>
+  </head>
 
-</style>
-</head>
+  <body>
+    <div class="container">
+      <h1>แผนการเงิน 2026</h1>
 
-<body>
-<div class="container">
+      <div class="card">
+        <h3>➕ รายได้เสริม</h3>
+        <select id="month"></select>
+        <input type="number" id="extra" placeholder="จำนวนรายได้เสริม" />
+        <button onclick="addExtra()">บันทึก</button>
+      </div>
 
-<h1>แผนการเงิน 2026</h1>
+      <div class="card">
+        <h3>📊 ตรวจสอบแผนรายเดือน</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>เดือน</th>
+                <th>ใช้ชีวิตรวม</th>
+                <th>ออมหลัก</th>
+                <th>ออมเที่ยว</th>
+                <th>รายได้เสริม</th>
+                <th>รวมทั้งหมด</th>
+              </tr>
+            </thead>
+            <tbody id="status"></tbody>
+          </table>
+        </div>
+      </div>
 
-<div class="card">
-<h3>➕ รายได้เสริม</h3>
-<select id="month"></select>
-<input type="number" id="extra" placeholder="จำนวนรายได้เสริม" />
-<button onclick="addExtra()">บันทึก</button>
-</div>
+      <div class="card">
+        <h3>🏦 การแบ่งกองออม / เดือน</h3>
+        <div class="row">
+          <span class="label">🚨 เงินฉุกเฉิน</span><span id="emergency">0</span>
+        </div>
+        <div class="row">
+          <span class="label">🏦 ฉลากออมสิน</span><span id="saving">0</span>
+        </div>
+        <div class="row">
+          <span class="label">🧓 กอช.</span><span id="nsf">0</span>
+        </div>
+        <div class="row">
+          <span class="label">🟡 ออมทอง</span><span id="gold">0</span>
+        </div>
+        <hr />
+        <div class="row">
+          <strong>รวมออมหลักเดือนนี้</strong><strong id="mainMonth">0</strong>
+        </div>
+      </div>
 
-<div class="card">
-<h3>📊 ตรวจสอบแผนรายเดือน</h3>
-<div class="table-wrap">
-<table>
-<thead>
-<tr>
-<th>เดือน</th>
-<th>ใช้ชีวิตรวม</th>
-<th>ออมหลัก</th>
-<th>ออมเที่ยว</th>
-<th>รายได้เสริม</th>
-</tr>
-</thead>
-<tbody id="status"></tbody>
-</table>
-</div>
-</div>
+      <div class="card">
+        <h3>🏦 การแบ่งกองออม / ปี (ออมหลัก)</h3>
+        <div class="row">
+          <span class="label">🚨 เงินฉุกเฉิน</span><span>49,400</span>
+        </div>
+        <div class="row">
+          <span class="label">🏦 ฉลากออมสิน</span><span>19,956</span>
+        </div>
+        <div class="row">
+          <span class="label">🧓 กอช.</span><span>15,200</span>
+        </div>
+        <div class="row">
+          <span class="label">🟡 ออมทอง</span><span>10,444</span>
+        </div>
+        <hr />
+        <div class="row">
+          <strong>รวมออมหลัก</strong><strong>95,000</strong>
+        </div>
+        <div class="row">
+          <strong>รวมออมเที่ยว</strong><strong id="travelSave">0</strong>
+        </div>
+      </div>
 
-<div class="card">
-<h3>🏦 การแบ่งกองออม / เดือน</h3>
-<div class="row"><span class="label">🚨 เงินฉุกเฉิน</span><span id="emergency">0</span></div>
-<div class="row"><span class="label">🏦 ฉลากออมสิน</span><span id="saving">0</span></div>
-<div class="row"><span class="label">🧓 กอช.</span><span id="nsf">0</span></div>
-<div class="row"><span class="label">🟡 ออมทอง</span><span id="gold">0</span></div>
-<hr />
-<div class="row"><strong>รวมออมหลักเดือนนี้</strong><strong id="mainMonth">0</strong></div>
-</div>
+      <div class="card">
+        <h3>💰 เงินเก็บสะสมทั้งหมด</h3>
+        <h2 id="total">0 บาท</h2>
+      </div>
+    </div>
 
-<div class="card">
-<h3>🏦 การแบ่งกองออม / ปี (ออมหลัก)</h3>
-<div class="row"><span class="label">🚨 เงินฉุกเฉิน</span><span>49,400</span></div>
-<div class="row"><span class="label">🏦 ฉลากออมสิน</span><span>19,956</span></div>
-<div class="row"><span class="label">🧓 กอช.</span><span>15,200</span></div>
-<div class="row"><span class="label">🟡 ออมทอง</span><span>10,444</span></div>
-<hr />
-<div class="row"><strong>รวมออมหลัก</strong><strong>95,000</strong></div>
-<div class="row"><strong>รวมออมเที่ยว</strong><strong id="travelSave">0</strong></div>
-</div>
+    <script>
+      const plan = {
+        "ม.ค.": { life: 12100, main: 9650, travel: 2500 },
+        "ก.พ.": { life: 12100, main: 9650, travel: 2500 },
+        "มี.ค.": { life: 12100, main: 9650, travel: 2500 },
+        "เม.ย.": { life: 12100, main: 9650, travel: 2500 },
+        "พ.ค.": { life: 20100, main: 1650, travel: 2500 },
+        "มิ.ย.": { life: 15100, main: 6650, travel: 2500 },
+        "ก.ค.": { life: 15100, main: 6650, travel: 2500 },
+        "ส.ค.": { life: 15100, main: 6650, travel: 2500 },
+        "ก.ย.": { life: 15100, main: 6650, travel: 2500 },
+        "ต.ค.": { life: 15100, main: 6650, travel: 2500 },
+        "พ.ย.": { life: 11000, main: 10750, travel: 2500 },
+        "ธ.ค.": { life: 11000, main: 10750, travel: 2500 },
+      };
 
-<div class="card">
-<h3>💰 เงินเก็บสะสมทั้งหมด</h3>
-<h2 id="total">0 บาท</h2>
-</div>
+      let extras = JSON.parse(localStorage.getItem("extras") || "{}");
+      const monthSel = document.getElementById("month");
 
-</div>
+      Object.keys(plan).forEach((m) => {
+        const o = document.createElement("option");
+        o.value = m;
+        o.textContent = m;
+        monthSel.appendChild(o);
+      });
 
-<script>
-const plan={
- "ม.ค.":{life:12100,main:9650,travel:2500},
- "ก.พ.":{life:12100,main:9650,travel:2500},
- "มี.ค.":{life:12100,main:9650,travel:2500},
- "เม.ย.":{life:12100,main:9650,travel:2500},
- "พ.ค.":{life:20100,main:1650,travel:2500},
- "มิ.ย.":{life:15100,main:6650,travel:2500},
- "ก.ค.":{life:15100,main:6650,travel:2500},
- "ส.ค.":{life:15100,main:6650,travel:2500},
- "ก.ย.":{life:15100,main:6650,travel:2500},
- "ต.ค.":{life:15100,main:6650,travel:2500},
- "พ.ย.":{life:11000,main:10750,travel:2500},
- "ธ.ค.":{life:11000,main:10750,travel:2500},
-};
+      function addExtra() {
+        const m = monthSel.value;
+        const v = Number(document.getElementById("extra").value || 0);
+        extras[m] = (extras[m] || 0) + v;
+        localStorage.setItem("extras", JSON.stringify(extras));
+        render();
+      }
 
-let extras=JSON.parse(localStorage.getItem('extras')||'{}');
-const monthSel=document.getElementById('month');
+      function render() {
+        let total = 0,
+          sumTravel = 0;
+        const tbody = document.getElementById("status");
+        tbody.innerHTML = "";
 
-Object.keys(plan).forEach(m=>{
- const o=document.createElement('option');
- o.value=m;o.textContent=m;
- monthSel.appendChild(o);
-});
+        Object.keys(plan).forEach((m) => {
+          const p = plan[m];
+          const extra = extras[m] || 0;
+          const monthTotal = p.main + p.travel + extra;
 
-function addExtra(){
- const m=monthSel.value;
- const v=Number(document.getElementById('extra').value||0);
- extras[m]=(extras[m]||0)+v;
- localStorage.setItem('extras',JSON.stringify(extras));
- render();
-}
+          total += monthTotal;
+          sumTravel += p.travel;
 
-function render(){
- let total=0,sumTravel=0;
- const tbody=document.getElementById('status');
- tbody.innerHTML='';
+          tbody.innerHTML += `
+            <tr>
+              <td class="left">${m}</td>
+              <td>${p.life.toLocaleString()}</td>
+              <td>${p.main.toLocaleString()}</td>
+              <td>${p.travel.toLocaleString()}</td>
+              <td>${extra.toLocaleString()}</td>
+              <td><strong>${monthTotal.toLocaleString()}</strong></td>
+            </tr>`;
+        });
 
- Object.keys(plan).forEach(m=>{
-  const p=plan[m];
-  const extra=extras[m]||0;
+        document.getElementById("travelSave").textContent =
+          sumTravel.toLocaleString();
+        document.getElementById("total").textContent =
+          total.toLocaleString() + " บาท";
+        updateMonthlySplit();
+      }
 
-  total+=p.main+p.travel+extra;
-  sumTravel+=p.travel;
+      function updateMonthlySplit() {
+        const m = monthSel.value;
+        const main = plan[m].main;
 
-  tbody.innerHTML+=`
-   <tr>
-    <td class="left">${m}</td>
-    <td>${p.life.toLocaleString()}</td>
-    <td>${p.main.toLocaleString()}</td>
-    <td>${p.travel.toLocaleString()}</td>
-    <td>${extra.toLocaleString()}</td>
-   </tr>`;
- });
+        const emergency = Math.round(main * 0.69);
+        const saving = Math.round(main * 0.1);
+        const nsf = Math.round(main * 0.1);
+        const gold = main - (emergency + saving + nsf);
 
- document.getElementById('travelSave').textContent=sumTravel.toLocaleString();
- document.getElementById('total').textContent=total.toLocaleString()+" บาท";
- updateMonthlySplit();
-}
+        document.getElementById("emergency").textContent =
+          emergency.toLocaleString();
+        document.getElementById("saving").textContent = saving.toLocaleString();
+        document.getElementById("nsf").textContent = nsf.toLocaleString();
+        document.getElementById("gold").textContent = gold.toLocaleString();
+        document.getElementById("mainMonth").textContent =
+          main.toLocaleString();
+      }
 
-function updateMonthlySplit(){
- const m=monthSel.value;
- const main=plan[m].main;
-
- const emergency=Math.round(main*0.69);
- const saving=Math.round(main*0.10);
- const nsf=Math.round(main*0.10);
- const gold=main-(emergency+saving+nsf);
-
- document.getElementById('emergency').textContent=emergency.toLocaleString();
- document.getElementById('saving').textContent=saving.toLocaleString();
- document.getElementById('nsf').textContent=nsf.toLocaleString();
- document.getElementById('gold').textContent=gold.toLocaleString();
- document.getElementById('mainMonth').textContent=main.toLocaleString();
-}
-
-monthSel.addEventListener('change',updateMonthlySplit);
-render();
-</script>
-
-</body>
+      monthSel.addEventListener("change", updateMonthlySplit);
+      render();
+    </script>
+  </body>
 </html>
