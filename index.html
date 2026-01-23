@@ -118,11 +118,32 @@
     <div class="container">
       <h1>แผนการเงิน 2026</h1>
 
+      <!-- รายได้เสริม -->
       <div class="card">
         <h3>➕ รายได้เสริม</h3>
         <select id="month"></select>
-        <input type="number" id="extra" placeholder="จำนวนรายได้เสริม" />
+        <input
+          type="number"
+          id="extra"
+          placeholder="ใส่ + เพิ่ม / - ไขรายได้เสริม"
+        />
         <button onclick="addExtra()">บันทึก</button>
+      </div>
+
+      <!-- ปรับออม -->
+      <div class="card">
+        <h3>✏️ ปรับออม (ออมหลัก / ออมเที่ยว)</h3>
+        <select id="adjustMonth"></select>
+        <select id="adjustType">
+          <option value="main">ออมหลัก</option>
+          <option value="travel">ออมเที่ยว</option>
+        </select>
+        <input
+          type="number"
+          id="adjustValue"
+          placeholder="ใส่ + เพิ่ม / - ไขออม"
+        />
+        <button onclick="addAdjust()">บันทึก</button>
       </div>
 
       <div class="card">
@@ -146,43 +167,30 @@
       <div class="card">
         <h3>🏦 การแบ่งกองออม / เดือน</h3>
         <div class="row">
-          <span class="label">🚨 เงินฉุกเฉิน</span><span id="emergency">0</span>
+          <span>🚨 เงินฉุกเฉิน</span><span id="emergency">0</span>
         </div>
         <div class="row">
-          <span class="label">🏦 ฉลากออมสิน</span><span id="saving">0</span>
+          <span>🏦 ฉลากออมสิน</span><span id="saving">0</span>
         </div>
-        <div class="row">
-          <span class="label">🧓 กอช.</span><span id="nsf">0</span>
-        </div>
-        <div class="row">
-          <span class="label">🟡 ออมทอง</span><span id="gold">0</span>
-        </div>
+        <div class="row"><span>🧓 กอช.</span><span id="nsf">0</span></div>
+        <div class="row"><span>🟡 ออมทอง</span><span id="gold">0</span></div>
         <hr />
         <div class="row">
           <strong>รวมออมหลักเดือนนี้</strong><strong id="mainMonth">0</strong>
         </div>
       </div>
 
+      <!-- ✅ แก้ตรงนี้ -->
       <div class="card">
-        <h3>🏦 การแบ่งกองออม / ปี (ออมหลัก)</h3>
+        <h3>🏦 การแบ่งกองออม / ปี (สรุปยอด)</h3>
         <div class="row">
-          <span class="label">🚨 เงินฉุกเฉิน</span><span>70,000</span>
+          <strong>ออมหลักรวม</strong><strong id="sumMain">0</strong>
         </div>
         <div class="row">
-          <span class="label">🏦 ฉลากออมสิน</span><span>15,200</span>
+          <strong>ออมเที่ยวรวม</strong><strong id="sumTravel">0</strong>
         </div>
         <div class="row">
-          <span class="label">🧓 กอช.</span><span>12,000</span>
-        </div>
-        <div class="row">
-          <span class="label">🟡 ออมทอง</span><span>8,900</span>
-        </div>
-        <hr />
-        <div class="row">
-          <strong>รวมออมหลัก</strong><strong>106,100</strong>
-        </div>
-        <div class="row">
-          <strong>รวมออมเที่ยว</strong><strong id="travelSave">0</strong>
+          <strong>รายได้เสริมรวม</strong><strong id="sumExtra">0</strong>
         </div>
       </div>
 
@@ -208,103 +216,103 @@
         "ธ.ค.": { life: 13650, main: 8500, travel: 2100 },
       };
 
-      // รายได้เสริม (localStorage)
-      let extras = {};
-      let extraTouched = localStorage.getItem("extraTouched") === "1";
-
-      try {
-        extras = JSON.parse(localStorage.getItem("extras") || "{}");
-        if (typeof extras !== "object" || Array.isArray(extras)) extras = {};
-      } catch {
-        extras = {};
-      }
-
-      if (!extraTouched && Object.keys(extras).length > 0) {
-        extras = {};
-        localStorage.removeItem("extras");
-      }
-
-      // dropdown เดือน
       const monthSel = document.getElementById("month");
+      const adjustMonthSel = document.getElementById("adjustMonth");
+      const statusEl = document.getElementById("status");
+      const totalEl = document.getElementById("total");
+
+      const emergencyEl = document.getElementById("emergency");
+      const savingEl = document.getElementById("saving");
+      const nsfEl = document.getElementById("nsf");
+      const goldEl = document.getElementById("gold");
+      const mainMonthEl = document.getElementById("mainMonth");
+
+      const sumTravelEl = document.getElementById("sumTravel");
+      const sumExtraEl = document.getElementById("sumExtra");
+      const sumMainEl = document.getElementById("sumMain");
+
+      let extras = JSON.parse(localStorage.getItem("extras") || "{}");
+      let adjust = JSON.parse(localStorage.getItem("adjust") || "{}");
 
       Object.keys(plan).forEach((m) => {
-        const o = document.createElement("option");
-        o.value = m;
-        o.textContent = m;
-        monthSel.appendChild(o);
+        monthSel.add(new Option(m, m));
+        adjustMonthSel.add(new Option(m, m));
       });
 
-      // เพิ่มรายได้เสริม
+      monthSel.value = Object.keys(plan)[0];
+      adjustMonthSel.value = Object.keys(plan)[0];
+
       function addExtra() {
         const m = monthSel.value;
-        const v = Number(document.getElementById("extra").value || 0);
-        if (v <= 0) return;
-
+        const v = Number(extra.value);
+        if (!v) return;
         extras[m] = (extras[m] || 0) + v;
         localStorage.setItem("extras", JSON.stringify(extras));
-        localStorage.setItem("extraTouched", "1");
-        extraTouched = true;
-
-        document.getElementById("extra").value = "";
+        extra.value = "";
         render();
       }
 
-      // render ตาราง + ยอดรวม
-      function render() {
-        let sumMain = 0;
-        let sumTravel = 0;
-        let sumExtra = 0;
+      function addAdjust() {
+        const m = adjustMonthSel.value;
+        const type = adjustType.value;
+        const v = Number(adjustValue.value);
+        if (!v) return;
+        if (!adjust[m]) adjust[m] = { main: 0, travel: 0 };
+        adjust[m][type] += v;
+        localStorage.setItem("adjust", JSON.stringify(adjust));
+        adjustValue.value = "";
+        render();
+      }
 
-        const tbody = document.getElementById("status");
-        tbody.innerHTML = "";
+      function render() {
+        let sumMain = 0,
+          sumTravel = 0,
+          sumExtra = 0;
+        statusEl.innerHTML = "";
 
         Object.keys(plan).forEach((m) => {
           const p = plan[m];
-          const extra = extraTouched ? extras[m] || 0 : 0;
+          const a = adjust[m] || { main: 0, travel: 0 };
+          const e = extras[m] || 0;
 
-          sumMain += p.main;
-          sumTravel += p.travel;
-          sumExtra += extra;
+          const main = p.main + a.main;
+          const travel = p.travel + a.travel;
 
-          tbody.innerHTML += `
-        <tr>
-          <td class="left">${m}</td>
-          <td>${p.life.toLocaleString()}</td>
-          <td>${p.main.toLocaleString()}</td>
-          <td>${p.travel.toLocaleString()}</td>
-          <td>${extra.toLocaleString()}</td>
-        </tr>`;
+          sumMain += main;
+          sumTravel += travel;
+          sumExtra += e;
+
+          statusEl.innerHTML += `
+          <tr>
+            <td>${m}</td>
+            <td>${p.life.toLocaleString()}</td>
+            <td>${main.toLocaleString()}</td>
+            <td>${travel.toLocaleString()}</td>
+            <td>${e.toLocaleString()}</td>
+          </tr>`;
         });
-
-        // รวมออมเที่ยวทั้งปี
-        document.getElementById("travelSave").textContent =
-          sumTravel.toLocaleString();
-
-        // 💰 เงินเก็บสะสมทั้งหมด
-        // = รวมออมหลัก + รวมออมเที่ยว + รายได้เสริม
-        document.getElementById("total").textContent =
+        sumTravelEl.textContent = sumTravel.toLocaleString();
+        sumExtraEl.textContent = sumExtra.toLocaleString();
+        sumMainEl.textContent = sumMain.toLocaleString(); // ✅ ออมหลักรวมจริง
+        totalEl.textContent =
           (sumMain + sumTravel + sumExtra).toLocaleString() + " บาท";
 
         updateMonthlySplit();
       }
 
-      // แบ่งกองออมรายเดือน
       function updateMonthlySplit() {
         const m = monthSel.value;
-        const main = plan[m].main;
-
-        const emergency = Math.round(main * 0.7);
+        const main = plan[m].main + (adjust[m]?.main || 0);
+        const emergency = Math.round(main * 0.65);
         const saving = Math.round(main * 0.15);
-        const nsf = Math.round(main * 0.05);
-        const gold = main - (emergency + saving + nsf);
+        const gold = Math.round(main * 0.12);
+        const nsf = main - (emergency + saving + gold);
 
-        document.getElementById("emergency").textContent =
-          emergency.toLocaleString();
-        document.getElementById("saving").textContent = saving.toLocaleString();
-        document.getElementById("nsf").textContent = nsf.toLocaleString();
-        document.getElementById("gold").textContent = gold.toLocaleString();
-        document.getElementById("mainMonth").textContent =
-          main.toLocaleString();
+        emergencyEl.textContent = emergency.toLocaleString();
+        savingEl.textContent = saving.toLocaleString();
+        goldEl.textContent = gold.toLocaleString();
+        nsfEl.textContent = nsf.toLocaleString();
+        mainMonthEl.textContent = main.toLocaleString();
       }
 
       monthSel.addEventListener("change", updateMonthlySplit);
