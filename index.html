@@ -182,7 +182,7 @@
 
       <!-- ✅ แก้ตรงนี้ -->
       <div class="card">
-        <h3>🏦 การแบ่งกองออม / ปี (สรุปยอด)</h3>
+        <h3>🏦 สรุปยอด</h3>
         <div class="row">
           <strong>ออมหลักรวม</strong><strong id="sumMain">0</strong>
         </div>
@@ -293,7 +293,7 @@
         });
         sumTravelEl.textContent = sumTravel.toLocaleString();
         sumExtraEl.textContent = sumExtra.toLocaleString();
-        sumMainEl.textContent = sumMain.toLocaleString(); // ✅ ออมหลักรวมจริง
+        sumMainEl.textContent = sumMain.toLocaleString(); 
         totalEl.textContent =
           (sumMain + sumTravel + sumExtra).toLocaleString() + " บาท";
 
