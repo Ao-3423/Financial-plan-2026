@@ -293,9 +293,9 @@
         const m = monthSel.value;
         const main = plan[m].main;
 
-        const emergency = Math.round(main * 0.69);
-        const saving = Math.round(main * 0.1);
-        const nsf = Math.round(main * 0.1);
+        const emergency = Math.round(main * 0.7);
+        const saving = Math.round(main * 0.15);
+        const nsf = Math.round(main * 0.05);
         const gold = main - (emergency + saving + nsf);
 
         document.getElementById("emergency").textContent =
