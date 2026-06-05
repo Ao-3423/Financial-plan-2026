@@ -202,20 +202,21 @@
 
     <script>
       const plan = {
-        "ม.ค.": { life: 12525, main: 9500, travel: 2100 },
-        "ก.พ.": { life: 12525, main: 9500, travel: 2100 },
-        "มี.ค.": { life: 19525, main: 4500, travel: 0 },
-        "เม.ย.": { life: 14025, main: 8500, travel: 2100 },
-        "พ.ค.": { life: 14025, main: 8500, travel: 2100 },
-        "มิ.ย.": { life: 14025, main: 8500, travel: 2100 },
-        "ก.ค.": { life: 14025, main: 8500, travel: 2100 },
-        "ส.ค.": { life: 14025, main: 8500, travel: 2100 },
-        "ก.ย.": { life: 14025, main: 8500, travel: 2100 },
-        "ต.ค.": { life: 14025, main: 8500, travel: 2100 },
-        "พ.ย.": { life: 14025, main: 8500, travel: 2100 },
-        "ธ.ค.": { life: 14025, main: 8500, travel: 2100 },
-      };
+        "ม.ค.": { life: 0, main: 0, travel: 0 },
+        "ก.พ.": { life: 0, main: 0, travel: 0 },
+        "มี.ค.": { life: 0, main: 0, travel: 0 },
+        "เม.ย.": { life: 0, main: 0, travel: 0 },
+        "พ.ค.": { life: 0, main: 0, travel: 0 },
 
+        // เริ่มแผนใหม่จาก มิ.ย.
+        "มิ.ย.": { life: 17072, main: 7053, travel: 0 },
+        "ก.ค.": { life: 17072, main: 7053, travel: 0 },
+        "ส.ค.": { life: 16042, main: 8083, travel: 0 },
+        "ก.ย.": { life: 16042, main: 8083, travel: 0 },
+        "ต.ค.": { life: 13342, main: 10783, travel: 0 },
+        "พ.ย.": { life: 11020, main: 13105, travel: 0 },
+        "ธ.ค.": { life: 11020, main: 13105, travel: 0 },
+      };
       const monthSel = document.getElementById("month");
       const adjustMonthSel = document.getElementById("adjustMonth");
       const statusEl = document.getElementById("status");
@@ -239,8 +240,8 @@
         adjustMonthSel.add(new Option(m, m));
       });
 
-      monthSel.value = Object.keys(plan)[0];
-      adjustMonthSel.value = Object.keys(plan)[0];
+      monthSel.value = "มิ.ย.";
+      adjustMonthSel.value = "มิ.ย.";
 
       function addExtra() {
         const m = monthSel.value;
@@ -294,8 +295,11 @@
         sumTravelEl.textContent = sumTravel.toLocaleString();
         sumExtraEl.textContent = sumExtra.toLocaleString();
         sumMainEl.textContent = sumMain.toLocaleString();
+
+        const startingMoney = 12000;
         totalEl.textContent =
-          (sumMain + sumTravel + sumExtra).toLocaleString() + " บาท";
+          (startingMoney + sumMain + sumTravel + sumExtra).toLocaleString() +
+          " บาท";
 
         updateMonthlySplit();
       }
